@@ -4,15 +4,9 @@ import TradeSimulator from "./TradeSimulator";
 
 export default function TradePage() {
   return (
-    <div className="min-h-screen bg-gray-100">
-        {/* 트레이드 시뮬레이터 */}
-        <section>
-          <div className="bg-white shadow-sm">
-            <TradeSimulator />
-          </div>
-        </section>
-
+    <div className="flex flex-col bg-gray-100" style={{ height: 'calc(100vh - 4rem)' }}>
+      {/* TradeSimulator가 남은 공간 전부 차지 */}
+      <TradeSimulator />
     </div>
   );
 }
-

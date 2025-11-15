@@ -77,7 +77,7 @@ export default function LineupBoard() {
         <button
           className={`px-4 py-2 rounded text-white ${
             isReady
-              ? "bg-green-600 hover:bg-green-700"
+              ? "bg-primary hover:bg-primary/80"
               : "bg-gray-400 cursor-not-allowed"
           }`}
           onClick={handleRecommend}
