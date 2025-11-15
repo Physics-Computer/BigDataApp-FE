@@ -47,7 +47,7 @@ export default function StrategyPage() {
   };
 
   return (
-    <div className="flex min-h-screen bg-white flex-col md:flex-row">
+    <div className="flex flex-1 bg-white flex-col md:flex-row">
 
       {/* Left Sidebar: Trade 페이지와 동일 구조 */}
       <div className="w-full md:w-60 bg-white shadow-md p-6 flex md:flex-col items-center md:items-start mr-4">
@@ -78,7 +78,7 @@ export default function StrategyPage() {
           />
 
           <button
-            className={`px-4 py-2 rounded text-white text-sm sm:text-base transition w-full sm:w-auto ${isReady ? "bg-primary hover:bg-blue-700" : "bg-gray-400 cursor-not-allowed"
+            className={`px-4 py-2 rounded text-white text-sm sm:text-base transition w-full sm:w-auto ${isReady ? "bg-primary hover:bg-primary/80" : "bg-gray-400 cursor-not-allowed"
               }`}
             onClick={handleExecute}
             disabled={!isReady}

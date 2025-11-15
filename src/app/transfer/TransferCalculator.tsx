@@ -30,7 +30,7 @@ export default function TransferCalculator() {
   };
 
   return (
-    <div className="flex min-h-screen bg-white flex-col md:flex-row">
+    <div className="flex flex-1 bg-white flex-col md:flex-row">
 
       {/* Sidebar */}
       <div className="w-full md:w-60 bg-white shadow-md p-6 flex md:flex-col items-center md:items-start mr-4">
@@ -78,21 +78,21 @@ export default function TransferCalculator() {
 
         {/* 안내 문구 */}
         {!loading && !result && !isReady && (
-          <div className="text-center text-gray-500 mb-6 text-sm sm:text-base">
+          <div className="text-left text-gray-500 mb-6 text-sm sm:text-base">
             팀과 선수를 선택한 뒤 버튼을 눌러주세요.
           </div>
         )}
 
         {/* 로딩 */}
         {loading && (
-          <div className="flex justify-center my-6">
+          <div className="flex justify-center mr-6">
             <div className="animate-spin h-10 w-10 border-4 border-gray-300 border-t-primary rounded-full"></div>
           </div>
         )}
 
         {/* 결과 박스 */}
         {result && (
-          <div className="flex justify-center mt-4 w-full">
+          <div className="flex justify-center w-full">
             <div className="bg-white shadow-lg rounded-xl p-6 w-full text-left border">
               <p className="text-gray-700 text-base sm:text-lg">{result}</p>
             </div>

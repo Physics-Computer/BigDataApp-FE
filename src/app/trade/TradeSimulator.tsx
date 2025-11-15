@@ -20,35 +20,52 @@ export default function TradeSimulator() {
     setResult(null);
 
     try {
-      const res = await new Promise<{ ok: boolean; message: string }>((resolve) =>
-        setTimeout(() => resolve({ ok: true, message: "트레이드 성공!" }), 2000)
-      );
+      // 실제 API 요청 예시 (주석)
+      /*
+      const res = await fetch('/api/trades/simulate', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          team_a_id: leftTeam1,
+          team_b_id: rightTeam1,
+          players_a: [leftTeam2],
+          players_b: [rightTeam2]
+        })
+      });
+      const data = await res.json();
+      setResult({ ok: true, message: data.summary });
+      */
 
-      setResult(res);
+      // 하드코딩 결과
+      setTimeout(() => {
+        setResult({
+          ok: true,
+          message: "울산 수비력 향상, 포항 공격력 소폭 감소"
+        });
+        setLoading(false);
+      }, 1000);
+
     } catch (err) {
       setResult({ ok: false, message: "에러 발생!" });
+      setLoading(false);
     }
-
-    setLoading(false);
   };
 
   return (
-    <div className="flex min-h-screen bg-white flex-col md:flex-row">
+    <div className="flex flex-col md:flex-row flex-1 bg-white">
 
       {/* Left Sidebar */}
-      <div className="w-full md:w-60 bg-white shadow-md p-6 flex md:flex-col items-center md:items-start mr-4">
+      <div className="w-full md:w-60 bg-white shadow-md p-6 flex md:flex-col items-center md:items-start flex-shrink-0">
         <h1 className="text-2xl font-bold text-gray-900 leading-tight mb-6 md:mb-10 text-center md:text-left">
           TRADE<br />SIMULATOR
         </h1>
       </div>
 
       {/* Main Content */}
-      <div className="flex-1 p-5 sm:p-8 md:p-10 mt-2 bg-white">
+      <div className="flex-1 p-5 sm:p-8 md:p-10 flex flex-col overflow-y-auto">
 
         {/* Dropdown + Trade Button */}
-        <div className="flex flex-col sm:flex-row items-start gap-4 sm:gap-8 mb-12">
-
-          {/* Left 2 dropdowns */}
+        <div className="flex flex-col sm:flex-row items-start gap-4 sm:gap-8 mb-8">
           <div className="flex gap-3 justify-start w-full sm:w-auto">
             <select
               className="border p-2 rounded w-32 sm:w-36 md:w-40 text-sm sm:text-base"
@@ -56,8 +73,8 @@ export default function TradeSimulator() {
               onChange={(e) => setLeftTeam1(e.target.value)}
             >
               <option value="">Select</option>
-              <option value="A">팀 A</option>
-              <option value="B">팀 B</option>
+              <option value="ulsan">울산</option>
+              <option value="pohang">포항</option>
             </select>
 
             <select
@@ -66,16 +83,15 @@ export default function TradeSimulator() {
               onChange={(e) => setLeftTeam2(e.target.value)}
             >
               <option value="">Select</option>
-              <option value="C">팀 C</option>
-              <option value="D">팀 D</option>
+              <option value="p1">선수1</option>
+              <option value="p2">선수2</option>
             </select>
           </div>
 
-          {/* Trade Button */}
           <button
-            className={`px-4 py-2 rounded text-white text-sm sm:text-base transition w-full sm:w-auto ${
+            className={`px-4 py-2 rounded text-white text-sm sm:text-base transition w-[130px] sm:w-auto ${
               isReadyToTrade
-                ? "bg-emerald-600 hover:bg-emerald-700"
+                ? "bg-primary hover:bg-primary/80"
                 : "bg-gray-400 cursor-not-allowed"
             }`}
             onClick={handleTrade}
@@ -84,7 +100,6 @@ export default function TradeSimulator() {
             Trade
           </button>
 
-          {/* Right 2 dropdowns */}
           <div className="flex gap-3 justify-start w-full sm:w-auto">
             <select
               className="border p-2 rounded w-32 sm:w-36 md:w-40 text-sm sm:text-base"
@@ -92,8 +107,8 @@ export default function TradeSimulator() {
               onChange={(e) => setRightTeam1(e.target.value)}
             >
               <option value="">Select</option>
-              <option value="E">팀 E</option>
-              <option value="F">팀 F</option>
+              <option value="ulsan">울산</option>
+              <option value="pohang">포항</option>
             </select>
 
             <select
@@ -102,8 +117,8 @@ export default function TradeSimulator() {
               onChange={(e) => setRightTeam2(e.target.value)}
             >
               <option value="">Select</option>
-              <option value="G">팀 G</option>
-              <option value="H">팀 H</option>
+              <option value="p1">선수1</option>
+              <option value="p2">선수2</option>
             </select>
           </div>
         </div>
@@ -124,9 +139,9 @@ export default function TradeSimulator() {
 
         {/* 결과 박스 */}
         {result && (
-          <div className="flex justify-center mt-6 w-full">
-            <div className="bg-white shadow-lg rounded-xl p-6 w-full text- border">
-              <h2 className="text-xl sm:text-2xl font-bold mb-2">
+          <div className="flex justify-center mt-0 w-full overflow-hidden">
+            <div className="bg-white shadow-lg rounded-xl p-6 w-full text-left border">
+              <h2 className="text-xl sm:text-xl font-bold mb-2">
                 {result.ok ? "🎉 트레이드 성공!" : "❌ 트레이드 실패"}
               </h2>
               <p className="text-gray-600 text-sm sm:text-lg">{result.message}</p>
