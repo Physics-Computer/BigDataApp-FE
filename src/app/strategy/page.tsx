@@ -1,9 +1,11 @@
-import StrategyView from "./StrategyView";
+"use client";
 
+import StrategyView from "./StrategyView";
 export default function StrategyPage() {
   return (
-    <div className="page-container">
+     <div className="flex flex-col bg-gray-100" style={{ height: 'calc(100vh - 4rem)' }}>
       <StrategyView />
     </div>
+
   );
 }

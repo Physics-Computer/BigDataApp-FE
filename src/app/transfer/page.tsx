@@ -1,8 +1,10 @@
+"use client";
+
 import TransferCalculator from "./TransferCalculator";
 
 export default function TransferPage() {
   return (
-    <div className="page-container">
+    <div className="flex flex-col bg-gray-100" style={{ height: 'calc(100vh - 4rem)' }}>
       <TransferCalculator />
     </div>
   );
